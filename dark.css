@@ -1,0 +1,587 @@
+/* 基础样式 */code
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  color: #e2e8f0;
+}
+
+/* 头部容器 */
+.header-container {
+  background: linear-gradient(to right, #4c51bf, #0987a0);
+  color: #f7fafc;
+  padding: 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-container header {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  height: 80px;
+  border-bottom: none;
+}
+
+header h1 {
+  flex: 3;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0;
+  color: #f7fafc;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.header-button {
+  flex: 2;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+button {
+  height: 45px;
+  width: 140px;
+  margin: 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+button:first-child {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+button:first-child:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+button:last-child {
+  background: #4c51bf;
+  color: #f7fafc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:last-child:hover {
+  background: #5a67d8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* 工具栏 */
+.toolbar {
+  background: rgba(26, 32, 44, 0.9);
+  padding: 14px 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e0;
+  font-size: 14px;
+  font-weight: 500;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+/* 编辑容器 */
+.edit-container {
+  display: flex;
+  height: calc(100% - 130px);
+  background: transparent;
+  padding: 25px;
+  gap: 25px;
+  border: none;
+}
+
+.edit,
+.preview {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #2d3748;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(74, 85, 104, 0.8);
+}
+
+.h2 {
+  background: linear-gradient(to right, #2d3748, #4a5568);
+  padding: 20px 25px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #e2e8f0;
+  border-bottom: 1px solid #4a5568;
+}
+
+textarea {
+  flex: 1;
+  resize: none;
+  outline: none;
+  border: none;
+  padding: 25px;
+  font-size: 15px;
+  line-height: 1.7;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', Consolas, monospace;
+  background: #1a202c;
+  color: #e2e8f0;
+  caret-color: #63b3ed;
+  transition: background-color 0.2s ease;
+}
+
+.edit textarea {
+  background: #2d3748;
+  color: #e2e8f0;
+}
+
+.edit textarea:focus {
+  background: #1a202c;
+}
+
+/*    output区域    */
+
+.output {
+  flex: 1;
+  padding: 25px;
+  overflow-y: auto;
+  background: #1a202c;
+  color: #e2e8f0;
+  line-height: 1.7;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 标题样式 */
+.output h1 {
+  font-size: 2em;
+  font-weight: 700;
+  color: #f7fafc;
+  margin: 1.5em 0 0.5em 0;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid #4a5568;
+}
+
+.output h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin: 1.5em 0 0.5em 0;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #4a5568;
+}
+
+.output h3 {
+  font-size: 1.25em;
+  font-weight: 600;
+  color: #cbd5e0;
+  margin: 1.5em 0 0.5em 0;
+}
+
+.output h4 {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #cbd5e0;
+  margin: 1.5em 0 0.5em 0;
+}
+
+.output h5 {
+  font-size: 1em;
+  font-weight: 600;
+  color: #a0aec0;
+  margin: 1.5em 0 0.5em 0;
+}
+
+.output h6 {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #a0aec0;
+  margin: 1.5em 0 0.5em 0;
+}
+
+/* 段落和文本 */
+.output p {
+  margin-bottom: 1.2em;
+  line-height: 1.8;
+  color: #cbd5e0;
+}
+
+/* 链接 */
+.output a {
+  color: #63b3ed;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  border-bottom: 1px dashed transparent;
+}
+
+.output a:hover {
+  color: #90cdf4;
+  border-bottom: 1px dashed #90cdf4;
+}
+
+/* 行内代码 */
+.output code {
+  background-color: rgba(0 , 0, 0, 0.4);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', Consolas, monospace;
+  font-size: 0.9em;
+  color: #feb2b2;
+  border: 1px solid #4a5568;
+}
+
+/* 代码块 */
+.output pre {
+  background: rgba(209, 229, 225, 0.663);
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  margin: 1.2em 0;
+  border: 1px solid #4a5568;
+}
+
+.output pre code {
+  background: transparent;
+  padding: 0;
+  border: none;
+  color: inherit;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+/* 引用块 */
+.output blockquote {
+  border-left: 4px solid #4c51bf;
+  padding-left: 16px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 1.2em;
+  color: #a0aec0;
+  font-style: italic;
+  background: linear-gradient(to right, rgba(76, 81, 191, 0.1), transparent);
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/* 列表 */
+.output ul,
+.output ol {
+  padding-left: 2em;
+  margin-bottom: 1.2em;
+}
+
+.output li {
+  margin-bottom: 0.6em;
+  line-height: 1.7;
+  color: #cbd5e0;
+}
+
+.output ul li {
+  list-style-type: disc;
+}
+
+.output ol li {
+  list-style-type: decimal;
+}
+
+/* 任务列表 */
+.output input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.2);
+  accent-color: #4c51bf;
+}
+
+/* 表格 */
+.output table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1.5em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #4a5568;
+}
+
+.output th {
+  background: linear-gradient(to right, #2d3748, #4a5568);
+  color: #f7fafc;
+  font-weight: 600;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 2px solid #4a5568;
+}
+
+.output td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #4a5568;
+  color: #cbd5e0;
+}
+
+.output tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.output tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* 水平线 */
+.output hr {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #4a5568, transparent);
+  border: none;
+  margin: 2em 0;
+}
+
+/* 图片 */
+.output img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1em 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  display: block;
+  border: 1px solid #4a5568;
+}
+
+/* 强调文本 */
+.output strong {
+  font-weight: 700;
+  color: #f7fafc;
+}
+
+.output em {
+  font-style: italic;
+  color: #cbd5e0;
+}
+
+/* 键盘文本 */
+.output kbd {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 0.85em;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', Consolas, monospace;
+  color: #cbd5e0;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #4a5568;
+  border-radius: 4px;
+  box-shadow: 0 2px 0 #2d3748;
+}
+
+/* 上标和下标 */
+.output sup,
+.output sub {
+  font-size: 0.75em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.output sup {
+  top: -0.5em;
+  color: #90cdf4;
+}
+
+.output sub {
+  bottom: -0.25em;
+  color: #90cdf4;
+}
+
+/* 删除线 */
+.output del {
+  color: #a0aec0;
+  text-decoration-color: #e53e3e;
+}
+
+/* 高亮文本 */
+.output mark {
+  background-color: rgba(246, 173, 85, 0.3);
+  color: #f7fafc;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+/* 脚注 */
+.output .footnote {
+  font-size: 0.85em;
+  color: #a0aec0;
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid #4a5568;
+}
+
+.output .footnote-ref {
+  font-size: 0.75em;
+  vertical-align: super;
+  color: #63b3ed;
+}
+
+/* 分割线样式加强 */
+.output hr.double {
+  height: 3px;
+  background: linear-gradient(to right, transparent, #4c51bf, #63b3ed, #4c51bf, transparent);
+  opacity: 0.6;
+}
+
+/* 滚动条美化 */
+.output::-webkit-scrollbar {
+  width: 8px;
+}
+
+.output::-webkit-scrollbar-track {
+  background: #2d3748;
+  border-radius: 4px;
+}
+
+.output::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 4px;
+}
+
+.output::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}
+
+textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: #2d3748;
+  border-radius: 4px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 4px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+  .header-container header {
+    padding: 0 20px;
+    height: 70px;
+  }
+
+  header h1 {
+    font-size: 24px;
+  }
+
+  .header-button {
+    gap: 12px;
+  }
+
+  button {
+    width: 120px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .edit-container {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .h2 {
+    padding: 16px 20px;
+    font-size: 16px;
+  }
+
+  textarea {
+    padding: 20px;
+    font-size: 14px;
+  }
+
+  .output {
+    padding: 20px;
+  }
+  
+  .output h1 {
+    font-size: 1.8em;
+  }
+  
+  .output h2 {
+    font-size: 1.4em;
+  }
+  
+  .output h3 {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container header {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    text-align: center;
+  }
+
+  header h1 {
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .header-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .edit-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .edit,
+  .preview {
+    min-height: 400px;
+  }
+  
+  .output {
+    font-size: 14px;
+  }
+  
+  .output table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* 打印样式 */
+@media print {
+  .output {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .output a {
+    color: #0000ee !important;
+  }
+  
+  .output code,
+  .output  {
+    background: #f5f5f5 !important;
+    color: #333 !important;
+    border: 1px solid #ddd !important;
+  }
+}
