@@ -4,15 +4,15 @@ const toogleTheme = document.querySelector('.toogleTheme')
 toogleTheme.addEventListener('click', () => {
   const theme = document.querySelector('#theme')
   const toogle = theme.href.includes('light.css') ? 'dark.css' : 'light.css'
-  theme.href = `./${toogle}`
+  theme.href = `./style/${toogle}`
   localStorage.setItem('toogle', toogle)
 })
 
 //加载主题
-document.addEventListener('', () => {
+document.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('toogle')) {
     const theme = document.querySelector('#theme')
-    theme.href = `./${localStorage.getItem('toogle')}`
+    theme.href = `./style/${localStorage.getItem('toogle')}`
   }
 })
 
@@ -40,7 +40,30 @@ input.addEventListener('input', () => {
 })
 
 document.addEventListener('DOMContentLoaded', () => {
-  input.value = localStorage.getItem('edit-content')
-  output.innerHTML = marked.parse(input.value)
+  if (localStorage.getItem('edit-content')) {
+    input.value = localStorage.getItem('edit-content')
+    output.innerHTML = marked.parse(input.value)
+  }
   hljs.highlightAll()
 })
+
+/*--导出--*/
+function exportHTML() {
+  const title = prompt('请输入导出文件名称')
+  const htmlContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${title}</title>
+</head>
+<body>
+  ${output.innerHTML}
+</body>
+</html>`
+  console.log(htmlContent);
+
+}
+
+const exportBtn = document.querySelector('.export')
+exportBtn.addEventListener('click', exportHTML)
