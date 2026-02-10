@@ -247,7 +247,7 @@ textarea {
 
 /* 代码块 */
 .output pre {
-  background: rgba(209, 229, 225, 0.663);
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 8px;
   padding: 16px;
   overflow-x: auto;

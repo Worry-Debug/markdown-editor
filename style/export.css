@@ -10,12 +10,11 @@ body {
     color: #2d3748;
     background: #ffffff;
     padding: 40px;
-    max-width: 210mm; /* A4宽度 */
+    max-width: 210mm;
     margin: 0 auto;
     font-size: 12pt;
 }
 
-/* 标题样式 */
 h1 {
     font-size: 24pt;
     font-weight: 700;
@@ -52,7 +51,8 @@ h4 {
     page-break-after: avoid;
 }
 
-h5, h6 {
+h5,
+h6 {
     font-size: 11pt;
     font-weight: 600;
     color: #718096;
@@ -69,7 +69,6 @@ p {
     widows: 2;
 }
 
-/* 链接 */
 a {
     color: #4f46e5;
     text-decoration: none;
@@ -81,8 +80,8 @@ a:hover {
     border-bottom-color: #07b7f2;
 }
 
-/* 列表 */
-ul, ol {
+ul,
+ol {
     margin: 0 0 16px 32px;
     padding-left: 0;
 }
@@ -100,12 +99,12 @@ ol li {
     list-style-type: decimal;
 }
 
-li > ul, li > ol {
+li>ul,
+li>ol {
     margin-top: 8px;
     margin-bottom: 0;
 }
 
-/* 代码块 */
 code {
     font-family: 'SF Mono', Monaco, 'Cascadia Code', Consolas, 'Courier New', monospace;
     font-size: 10pt;
@@ -135,7 +134,6 @@ pre code {
     line-height: 1.5;
 }
 
-/* 引用块 */
 blockquote {
     border-left: 4px solid #4f46e5;
     padding: 12px 20px;
@@ -150,7 +148,6 @@ blockquote p:last-child {
     margin-bottom: 0;
 }
 
-/* 表格 */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -176,7 +173,6 @@ tr:nth-child(even) {
     background-color: #f8fafc;
 }
 
-/* 水平线 */
 hr {
     border: none;
     height: 1px;
@@ -184,7 +180,6 @@ hr {
     margin: 32px 0;
 }
 
-/* 图片 */
 img {
     max-width: 100%;
     height: auto;
@@ -194,7 +189,6 @@ img {
     page-break-inside: avoid;
 }
 
-/* 强调文本 */
 strong {
     font-weight: 700;
     color: #2d3748;
@@ -216,7 +210,6 @@ mark {
     border-radius: 2px;
 }
 
-/* 键盘文本 */
 kbd {
     display: inline-block;
     padding: 3px 8px;
@@ -229,8 +222,8 @@ kbd {
     box-shadow: 0 1px 0 #cbd5e0;
 }
 
-/* 上标下标 */
-sup, sub {
+sup,
+sub {
     font-size: 9pt;
     line-height: 0;
     position: relative;
@@ -245,7 +238,6 @@ sub {
     bottom: -0.25em;
 }
 
-/* 任务列表 */
 .task-list-item {
     list-style-type: none;
     margin-left: -1.5em;
@@ -255,7 +247,6 @@ sub {
     margin-right: 8px;
 }
 
-/* 脚注 */
 .footnotes {
     margin-top: 40px;
     padding-top: 20px;
@@ -271,18 +262,20 @@ sub {
     margin-bottom: 8px;
 }
 
-/* 页眉页脚 */
 @page {
     margin: 20mm;
+
     @top-left {
         content: "Markdown文档";
         font-size: 10pt;
         color: #718096;
     }
+
     @top-right {
         content: counter(page);
         font-size: 10pt;
     }
+
     @bottom-center {
         content: "第 " counter(page) " 页，共 " counter(pages) " 页";
         font-size: 10pt;
@@ -290,7 +283,6 @@ sub {
     }
 }
 
-/* 分页控制 */
 .page-break {
     page-break-before: always;
 }
@@ -299,7 +291,6 @@ sub {
     page-break-inside: avoid;
 }
 
-/* 目录样式 */
 .toc {
     margin: 32px 0;
     padding: 20px;
@@ -334,7 +325,6 @@ sub {
     color: #4f46e5;
 }
 
-/* 代码块行号 */
 .code-block {
     position: relative;
 }
@@ -353,7 +343,6 @@ sub {
     color: #718096;
 }
 
-/* 特殊块 */
 .info-box {
     padding: 16px;
     margin: 16px 0;
@@ -378,58 +367,59 @@ sub {
     border-radius: 0 4px 4px 0;
 }
 
-/* 响应式调整 */
 @media print {
     body {
         padding: 0;
     }
-    
+
     a {
         color: #0000ee;
         text-decoration: underline;
     }
-    
+
     .no-print {
         display: none !important;
     }
 }
 
-/* 深色主题导出支持 */
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #1a202c;
         color: #e2e8f0;
     }
-    
-    h1, h2 {
+
+    h1,
+    h2 {
         color: #f7fafc;
         border-bottom-color: #4a5568;
     }
-    
-    h3, h4 {
+
+    h3,
+    h4 {
         color: #cbd5e0;
     }
-    
-    code, pre {
+
+    code,
+    pre {
         background-color: #2d3748;
         border-color: #4a5568;
     }
-    
+
     blockquote {
         background-color: #2d3748;
         color: #cbd5e0;
     }
-    
+
     table th {
         background-color: #2d3748;
         color: #f7fafc;
         border-bottom-color: #4a5568;
     }
-    
+
     table td {
         border-bottom-color: #4a5568;
     }
-    
+
     tr:nth-child(even) {
         background-color: #2d3748;
     }
