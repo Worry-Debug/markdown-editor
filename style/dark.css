@@ -1,4 +1,5 @@
-/* 基础样式 */code
+/* 修正后的深色主题样式 - dark-theme.css */
+/* 基础样式 */
 html,
 body {
   height: 100%;
@@ -8,6 +9,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
   color: #e2e8f0;
+  /* 允许body滚动 */
+  overflow: auto;
 }
 
 /* 头部容器 */
@@ -17,6 +20,8 @@ body {
   padding: 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* 不要固定，随body一起滚动 */
+  position: relative;
 }
 
 .header-container header {
@@ -87,7 +92,7 @@ button:last-child:hover {
 
 /* 工具栏 */
 .toolbar {
-  background: rgba(26, 32, 44, 0.9);
+  background: rgba(26, 32, 44, 0.95);
   padding: 14px 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   color: #cbd5e0;
@@ -96,12 +101,15 @@ button:last-child:hover {
   min-height: 50px;
   display: flex;
   align-items: center;
+  /* 不要固定，随body一起滚动 */
+  position: relative;
 }
 
-/* 编辑容器 */
+/* 编辑容器 - 关键修正：让内容撑开，支持body滚动 */
 .edit-container {
   display: flex;
-  height: calc(100% - 130px);
+  /* 重要：这里使用min-height而不是固定height */
+  min-height: calc(100vh - 130px); /* 最小高度，确保有足够空间 */
   background: transparent;
   padding: 25px;
   gap: 25px;
@@ -115,9 +123,11 @@ button:last-child:hover {
   flex-direction: column;
   background: #2d3748;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: hidden; /* 保持hidden，子元素控制滚动 */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(74, 85, 104, 0.8);
+  /* 关键：允许编辑器和预览器高度自适应 */
+  min-height: 500px;
 }
 
 .h2 {
@@ -128,9 +138,12 @@ button:last-child:hover {
   font-weight: 600;
   color: #e2e8f0;
   border-bottom: 1px solid #4a5568;
+  /* 禁止标题区域收缩 */
+  flex-shrink: 0;
 }
 
-textarea {
+/* 文本编辑区域 - 确保textarea可以滚动 */
+.edit textarea {
   flex: 1;
   resize: none;
   outline: none;
@@ -139,31 +152,29 @@ textarea {
   font-size: 15px;
   line-height: 1.7;
   font-family: 'SF Mono', Monaco, 'Cascadia Code', Consolas, monospace;
-  background: #1a202c;
+  background: #2d3748;
   color: #e2e8f0;
   caret-color: #63b3ed;
   transition: background-color 0.2s ease;
-}
-
-.edit textarea {
-  background: #2d3748;
-  color: #e2e8f0;
+  /* 关键：允许文本区域滚动 */
+  overflow-y: auto;
+  min-height: 200px;
 }
 
 .edit textarea:focus {
   background: #1a202c;
 }
 
-/*    output区域    */
-
+/* --- output区域 --- */
 .output {
   flex: 1;
   padding: 25px;
-  overflow-y: auto;
+  overflow-y: auto; /* 关键：允许输出区域滚动 */
   background: #1a202c;
   color: #e2e8f0;
   line-height: 1.7;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 200px;
 }
 
 /* 标题样式 */
@@ -234,9 +245,9 @@ textarea {
   border-bottom: 1px dashed #90cdf4;
 }
 
-/* 行内代码 */
-.output code {
-  background-color: rgba(0 , 0, 0, 0.4);
+/* 行内代码 - 修正选择器 */
+.output code:not(pre code) {
+  background-color: rgba(0, 0, 0, 0.4);
   padding: 2px 6px;
   border-radius: 4px;
   font-family: 'SF Mono', Monaco, 'Cascadia Code', Consolas, monospace;
@@ -416,62 +427,44 @@ textarea {
   border-radius: 3px;
 }
 
-/* 脚注 */
-.output .footnote {
-  font-size: 0.85em;
-  color: #a0aec0;
-  margin-top: 2em;
-  padding-top: 1em;
-  border-top: 1px solid #4a5568;
+/* 滚动条美化 - body滚动条 */
+body::-webkit-scrollbar {
+  width: 10px;
 }
 
-.output .footnote-ref {
-  font-size: 0.75em;
-  vertical-align: super;
-  color: #63b3ed;
+body::-webkit-scrollbar-track {
+  background: #1a202c;
 }
 
-/* 分割线样式加强 */
-.output hr.double {
-  height: 3px;
-  background: linear-gradient(to right, transparent, #4c51bf, #63b3ed, #4c51bf, transparent);
-  opacity: 0.6;
-}
-
-/* 滚动条美化 */
-.output::-webkit-scrollbar {
-  width: 8px;
-}
-
-.output::-webkit-scrollbar-track {
-  background: #2d3748;
-  border-radius: 4px;
-}
-
-.output::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
   background: #4a5568;
   border-radius: 4px;
 }
 
-.output::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover {
   background: #718096;
 }
 
-textarea::-webkit-scrollbar {
+/* 内部滚动条 */
+.output::-webkit-scrollbar,
+.edit textarea::-webkit-scrollbar {
   width: 8px;
 }
 
-textarea::-webkit-scrollbar-track {
+.output::-webkit-scrollbar-track,
+.edit textarea::-webkit-scrollbar-track {
   background: #2d3748;
   border-radius: 4px;
 }
 
-textarea::-webkit-scrollbar-thumb {
+.output::-webkit-scrollbar-thumb,
+.edit textarea::-webkit-scrollbar-thumb {
   background: #4a5568;
   border-radius: 4px;
 }
 
-textarea::-webkit-scrollbar-thumb:hover {
+.output::-webkit-scrollbar-thumb:hover,
+.edit textarea::-webkit-scrollbar-thumb:hover {
   background: #718096;
 }
 
@@ -499,6 +492,7 @@ textarea::-webkit-scrollbar-thumb:hover {
   .edit-container {
     padding: 20px;
     gap: 20px;
+    min-height: calc(100vh - 120px);
   }
 
   .h2 {
@@ -506,7 +500,7 @@ textarea::-webkit-scrollbar-thumb:hover {
     font-size: 16px;
   }
 
-  textarea {
+  .edit textarea {
     padding: 20px;
     font-size: 14px;
   }
@@ -548,12 +542,13 @@ textarea::-webkit-scrollbar-thumb:hover {
 
   .edit-container {
     flex-direction: column;
-    height: auto;
+    min-height: auto; /* 移动端自适应高度 */
   }
 
   .edit,
   .preview {
     min-height: 400px;
+    margin-bottom: 20px;
   }
   
   .output {
@@ -578,8 +573,8 @@ textarea::-webkit-scrollbar-thumb:hover {
     color: #0000ee !important;
   }
   
-  .output code,
-  .output  {
+  .output code:not(pre code),
+  .output pre code {
     background: #f5f5f5 !important;
     color: #333 !important;
     border: 1px solid #ddd !important;
