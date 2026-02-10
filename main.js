@@ -498,7 +498,7 @@ sub {
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
-  a.download = title
+  a.download = title + '.html'
   document.body.appendChild(a)
   a.click()
   document.body.removeChild(a)
