@@ -4,66 +4,67 @@ const theme = document.querySelector('#theme')
 const hljsTheme = document.querySelector('#hljsTheme')
 //切换主题
 toogleTheme.addEventListener('click', () => {
-  const toogle = theme.href.includes('light.css') ? 'dark.css' : 'light.css'
-  const toogleHljs = hljsTheme.href.includes('github') ? 'atom-one-dark' : 'github'
-  theme.href = `./style/${toogle}`
-  hljsTheme.href = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/${toogleHljs}.min.css`
-  localStorage.setItem('toogle', toogle)
-  localStorage.setItem('toogleHljs', toogleHljs)
+    const toogle = theme.href.includes('light.css') ? 'dark.css' : 'light.css'
+    const toogleHljs = hljsTheme.href.includes('github') ? 'atom-one-dark' : 'github'
+    theme.href = `./style/${toogle}`
+    hljsTheme.href = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/${toogleHljs}.min.css`
+    localStorage.setItem('toogle', toogle)
+    localStorage.setItem('toogleHljs', toogleHljs)
 })
 
 //加载主题
 document.addEventListener('DOMContentLoaded', () => {
-  if (localStorage.getItem('toogle')) {
-    theme.href = `./style/${localStorage.getItem('toogle')}`
-  }
-  if (localStorage.getItem('toogleHljs')) {
-    hljsTheme.href = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/${localStorage.getItem('toogleHljs')}.min.css`
-  }
+    if (localStorage.getItem('toogle')) {
+        theme.href = `./style/${localStorage.getItem('toogle')}`
+    }
+    if (localStorage.getItem('toogleHljs')) {
+        hljsTheme.href = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/${localStorage.getItem('toogleHljs')}.min.css`
+    }
 })
 
 /*--语法支持和代码高亮--*/
 //实例化markdown-it并加载插件
 const md = window.markdownit({
-  html: true,
-  breaks: true,
-  linkify: true,
-  typographer: true,
-  quotes: '“”‘’',
-  highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      return hljs.highlight(str, { language: lang }).value
+    html: true,
+    breaks: true,
+    linkify: true,
+    typographer: true,
+    quotes: '“”‘’',
+    highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+            return hljs.highlight(str, { language: lang }).value
+        }
+        return hljs.highlightAuto(str).value
     }
-    return hljs.highlightAuto(str).value
-  }
 }).use(window.markdownitTaskLists)  // 任务列表
-  .use(window.markdownitFootnote)   // 脚注
-  .use(window.markdownitSup)        // 上标
-  .use(window.markdownitSub)        // 下标
-  .use(window.markdownitDeflist)    // 定义列表
-  .use(window.markdownitAbbr)       // 缩写
-  .use(window.markdownitEmoji)      // 表情符号
+    .use(window.markdownitFootnote)   // 脚注
+    .use(window.markdownitSup)        // 上标
+    .use(window.markdownitSub)        // 下标
+    .use(window.markdownitDeflist)    // 定义列表
+    .use(window.markdownitAbbr)       // 缩写
+    .use(window.markdownitEmoji)      // 表情符号
 
 //实时预览和自动保存
 const input = document.querySelector('.input')
 const output = document.querySelector('.output')
 
 input.addEventListener('input', () => {
-  localStorage.setItem('edit-content', input.value)
-  output.innerHTML = md.render(input.value)
+    localStorage.setItem('edit-content', input.value)
+    output.innerHTML = md.render(input.value)
 })
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (localStorage.getItem('edit-content')) {
-    input.value = localStorage.getItem('edit-content')
-    output.innerHTML = md.render(input.value)
-  }
+    if (localStorage.getItem('edit-content')) {
+        input.value = localStorage.getItem('edit-content')
+        output.innerHTML = md.render(input.value)
+    }
 })
 
 /*--导出--*/
 function exportHTML() {
-  const title = prompt('请输入导出文件名称')
-  const htmlContent = `<!DOCTYPE html>
+    const title = prompt('请输入导出文件名称')
+    if (title) {
+        const htmlContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -501,15 +502,16 @@ sub {
   ${output.innerHTML}
 </body>
 </html>`
-  const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = title + '.html'
-  document.body.appendChild(a)
-  a.click()
-  document.body.removeChild(a)
-  URL.revokeObjectURL(url)
+        const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' })
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = title + '.html'
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+        URL.revokeObjectURL(url)
+    }
 }
 
 const exportBtn = document.querySelector('.export')
