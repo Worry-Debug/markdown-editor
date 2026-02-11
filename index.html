@@ -12,6 +12,7 @@
 
 <body>
     <div class="header-container">
+
         <header>
             <h1>Markdown编辑器</h1>
             <div class="header-button">
@@ -19,8 +20,100 @@
                 <button class="export">导出文档</button>
             </div>
         </header>
+
         <div class="toolbar">
-            toolbar
+            <div class="toolbar-group">
+                <button class="toolbar-btn" data-action="heading">
+                    <span class="btn-icon">H</span>
+                    <span class="btn-text">标题</span>
+                    <span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="dropdown-menu" id="heading-menu">
+                    <button class="dropdown-item" data-action="1">一级标题 </button>
+                    <button class="dropdown-item" data-action="2">二级标题 </button>
+                    <button class="dropdown-item" data-action="3">三级标题 </button>
+                    <button class="dropdown-item" data-action="4">四级标题 </button>
+                    <button class="dropdown-item" data-action="5">五级标题 </button>
+                    <button class="dropdown-item" data-action="6">六级标题 </button>
+                </div>
+            </div>
+
+            <div class="toolbar-divider"></div>
+
+            <button class="toolbar-btn" data-action="bold">
+                <span class="btn-icon" data-action="bold">B</span>
+                <span class="btn-text" data-action="bold">粗体</span>
+            </button>
+
+            <button class="toolbar-btn" data-action="italic">
+                <span class="btn-icon" data-action="italic">I</span>
+                <span class="btn-text" data-action="italic">斜体</span>
+            </button>
+
+            <button class="toolbar-btn" data-action="strikethrough">
+                <span class="btn-icon" data-action="strikethrough">S</span>
+                <span class="btn-text" data-action="strikethrough">删除线</span>
+            </button>
+
+            <div class="toolbar-divider"></div>
+
+            <button class="toolbar-btn" data-action="link">
+                <span class="btn-icon" data-action="link">🔗</span>
+                <span class="btn-text" data-action="link">链接</span>
+            </button>
+
+            <button class="toolbar-btn" data-action="image">
+                <span class="btn-icon"  data-action="image">🖼️</span>
+                <span class="btn-text"  data-action="image">图片</span>
+            </button>
+
+            <div class="toolbar-divider"></div>
+
+            <button class="toolbar-btn" data-action="code">
+                <span class="btn-icon" data-action="code">&lt;&gt;</span>
+                <span class="btn-text" data-action="code">代码</span>
+            </button>
+
+            <button class="toolbar-btn" data-action="codeblock">
+                <span class="btn-icon" data-action="codeblock">📋</span>
+                <span class="btn-text" data-action="codeblock">代码块</span>
+            </button>
+
+            <div class="toolbar-divider"></div>
+
+            <button class="toolbar-btn" data-action="quote">
+                <span class="btn-icon" data-action="quote">❝</span>
+                <span class="btn-text" data-action="quote">引用</span>
+            </button>
+
+            <button class="toolbar-btn" data-action="list">
+                <span class="btn-icon" data-action="list">•</span>
+                <span class="btn-text" data-action="list">列表</span>
+            </button>
+
+            <button class="toolbar-btn" data-action="olist">
+                <span class="btn-icon" data-action="olist">1.</span>
+                <span class="btn-text" data-action="olist">有序列表</span>
+            </button>
+
+            <button class="toolbar-btn" data-action="task">
+                <span class="btn-icon" data-action="task">✓</span>
+                <span class="btn-text" data-action="task">任务</span>
+            </button>
+
+            <div class="toolbar-divider"></div>
+
+            <button class="toolbar-btn" data-action="hr">
+                <span class="btn-icon" data-action="hr">―</span>
+                <span class="btn-text" data-action="hr">分隔线</span>
+            </button>
+
+            <div class="toolbar-divider"></div>  
+
+            <button class="toolbar-btn" data-action="clear">
+                <span class="btn-icon" data-action="clear">🗑️</span>
+                <span class="btn-text" data-action="clear">清空</span>
+            </button>
         </div>
     </div>
     <div class="edit-container">

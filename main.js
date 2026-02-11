@@ -516,3 +516,133 @@ sub {
 
 const exportBtn = document.querySelector('.export')
 exportBtn.addEventListener('click', exportHTML)
+
+/*---工具栏模块---*/
+const toolbar = document.querySelector('.toolbar')
+const headingBtn = document.querySelector('[data-action="heading"]')
+const headingMenu = document.getElementById('heading-menu')
+
+//点击显示/隐藏详细选项
+headingBtn.addEventListener('click', (e) => {
+    e.stopPropagation()     //被事件冒泡阴了(悲)
+    headingMenu.classList.toggle('show')
+})
+
+//点击其他地方隐藏详细选项(注意事件冒泡！！！)
+document.addEventListener('click', () => {
+    if (headingMenu.classList.contains('show'))
+        headingMenu.classList.remove('show')
+})
+
+/* 辅助函数构造 */
+//插入函数
+function insert(left, right) {
+    const start = input.selectionStart
+    const end = input.selectionEnd
+    const nowValue = input.value
+    const newValue = nowValue.substring(0, start) + left + nowValue.substring(start, end) + right + nowValue.substring(end)
+    input.value = newValue
+    const nowCursor = end + left.length
+    input.setSelectionRange(nowCursor, nowCursor)
+    input.focus()
+    //赋值居然不会触发input事件....js你就继续阴
+    input.dispatchEvent(new Event('input'))
+}
+
+//替换内容函数
+function change(str) {
+    const start = input.selectionStart
+    const end = input.selectionEnd
+    const nowValue = input.value
+    const newValue = nowValue.substring(0, start) + str + nowValue.substring(end)
+    input.value = newValue
+    const nowCursor = start + str.length
+    input.setSelectionRange(nowCursor, nowCursor)
+    input.focus()
+    input.dispatchEvent(new Event('input'))
+}
+
+//查找函数 
+function search(str) {
+    const start = input.selectionStart
+    const textBeforeCursor = input.value.substring(0, start)
+    const index = textBeforeCursor.lastIndexOf(str) === -1 ? 0 : textBeforeCursor.lastIndexOf(str) + 1
+    input.setSelectionRange(index, index)
+}
+
+
+
+//利用事件委托执行插入(我和事件冒泡和好了awa)
+toolbar.addEventListener('click', (e) => {
+    const obj = e.target.dataset.action
+    //处理n级标题
+    if (obj >= 1 && obj <= 6) {
+        search('\n')
+        let insertCotent = ''
+        for (let i = 0; i < obj; i++) {
+            insertCotent += '#'
+        }
+        insertCotent += ' '
+        insert(insertCotent, '')
+    }
+    //处理其他快捷键
+    else {
+        switch (obj) {
+            case 'bold': {
+                insert('**', '**')
+                break
+            }
+            case 'italic': {
+                insert('*', '*')
+                break
+            }
+            case 'strikethrough': {
+                insert('~~', '~~')
+                break
+            }
+            case 'link': {
+                change('[](https://www.)')
+                break
+            }
+            case 'image':{
+                change('![](https://www.)')
+                break
+            }
+            case 'code':{
+                insert('`','`')
+                break
+            }
+            case 'codeblock':{
+                insert('```','```')
+                break
+            }
+            case 'quote':  {
+                insert('>','')
+                break
+            }
+            case 'list':{
+                insert('- ','')
+                break
+            }
+            case 'olist':{
+                insert('1. ','')
+                break
+            }
+            case 'task':{
+                insert('- [ ] ','')
+                break
+            }
+            case 'hr':{
+                change('---')
+                break
+            }
+            case 'clear':{
+                if(confirm('确定要清空编辑内容吗？')){
+                    input.value = ''
+                    input.dispatchEvent(new Event('input'))
+                    input.focus()
+                }
+            }
+        }
+    }
+})

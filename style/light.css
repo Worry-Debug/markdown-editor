@@ -65,26 +65,26 @@ button {
   align-items: center;
 }
 
-button:first-child {
+.toogleTheme {
   background: rgba(255, 255, 255, 0.2);
   color: white;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-button:first-child:hover {
+.toogleTheme:hover {
   background: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-button:last-child {
+.export {
   background: white;
   color: #4f46e5;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-button:last-child:hover {
+.export:hover {
   background: #f8f9fa;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -576,4 +576,277 @@ body::-webkit-scrollbar-thumb:hover {
     color: #333 !important;
     border: 1px solid #ddd !important;
   }
+}
+
+/*---工具栏---*/
+.toolbar {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: #4a5568;
+    font-size: 14px;
+    font-weight: 500;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    position: relative;
+    border-bottom: 1px solid #e2e8f0;
+    backdrop-filter: blur(10px);
+}
+
+.toolbar-group {
+    position: relative;
+    display: inline-block;
+}
+
+.toolbar-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #4a5568;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 36px;
+    min-width: 36px;
+    justify-content: center;
+    position: relative;
+}
+
+.toolbar-btn:hover {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toolbar-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* 确保按钮图标和文字都正常显示 */
+.toolbar-btn .btn-icon {
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 16px; /* 改为min-width */
+    color: black;
+}
+
+.toolbar-btn .btn-text {
+    white-space: nowrap;
+    display: inline-block; /* 确保显示 */
+    color: #4a5568; /* 明确设置颜色 */
+    font-size: 13px;
+}
+
+.toolbar-btn .dropdown-arrow {
+    font-size: 10px;
+    margin-left: 2px;
+    opacity: 0.7;
+    display: inline-block; /* 确保显示 */
+    color: black;
+}
+
+.toolbar-divider {
+    width: 1px;
+    height: 24px;
+    background: #e2e8f0;
+    margin: 0 4px;
+}
+
+/* 下拉菜单样式 - 浅色主题 */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 160px;
+    z-index: 1000;
+    display: none;
+    margin-top: 4px;
+    padding: 6px;
+}
+
+.dropdown-menu.show {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    width: 100%;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #4a5568;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background: #f7fafc;
+    color: #2d3748;
+}
+
+.dropdown-item[data-action="1"] {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a202c;
+}
+
+.dropdown-item[data-action="2"] {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.dropdown-item[data-action="3"] {
+    font-size: 18px;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.dropdown-item[data-action="4"] {
+    font-size: 16px;
+    font-weight: 600;
+    color: #718096;
+}
+
+.dropdown-item[data-action="5"] {
+    font-size: 14px;
+    font-weight: 600;
+    color: #a0aec0;
+}
+
+.dropdown-item[data-action="6"] {
+    font-size: 13px;
+    font-weight: 600;
+    color: #cbd5e0;
+}
+
+/* 响应式调整 - 修改这些部分 */
+@media (max-width: 1200px) {
+    .toolbar-btn .btn-text {
+        display: inline-block !important; /* 强制显示 */
+        font-size: 12px; /* 稍微减小字号 */
+        max-width: 60px; /* 限制宽度 */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .toolbar-btn {
+        padding: 8px 10px; /* 减小内边距 */
+        min-width: auto; /* 自适应宽度 */
+    }
+    
+    .toolbar-btn .btn-icon {
+        margin: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .toolbar-btn .btn-text {
+        max-width: 50px;
+        font-size: 11px;
+    }
+    
+    .toolbar-btn {
+        padding: 8px 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .toolbar {
+        padding: 8px 12px;
+        gap: 3px;
+    }
+    
+    .toolbar-btn .btn-text {
+        display: none !important; /* 小屏幕上隐藏文字 */
+    }
+    
+    .toolbar-btn {
+        padding: 8px;
+        min-width: 36px;
+    }
+    
+    .toolbar-btn .btn-icon {
+        margin: 0;
+        font-size: 12px;
+    }
+    
+    .toolbar-divider {
+        display: none;
+    }
+    
+    .dropdown-menu {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .toolbar {
+        justify-content: center; /* 居中显示 */
+    }
+    
+    .toolbar-btn {
+        min-width: 32px;
+        height: 32px;
+        padding: 6px;
+    }
+    
+    .toolbar-btn .btn-icon {
+        font-size: 11px;
+    }
+}
+
+/* 确保标题按钮的文字在任何屏幕尺寸都能显示 */
+.toolbar-btn[data-action="heading"] .btn-text {
+    display: inline-block !important;
+}
+
+@media (max-width: 768px) {
+    .toolbar-btn[data-action="heading"] .btn-text {
+        max-width: 40px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .toolbar-btn[data-action="heading"] .btn-text {
+        display: none !important;
+    }
 }
